@@ -1,0 +1,38 @@
+/**
+ * Image variations.
+ */
+
+.wp-block-image img {
+	display: block;
+}
+
+/* Shaded photo: dark-to-forest gradient over the image (value rows). */
+.wp-block-image.is-style-rb-shade {
+	border-radius: var(--wp--custom--radius--card);
+	overflow: hidden;
+	position: relative;
+}
+
+.wp-block-image.is-style-rb-shade::after {
+	background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(8, 48, 28, 0.4));
+	content: "";
+	inset: 0;
+	pointer-events: none;
+	position: absolute;
+}
+
+.wp-block-image.is-style-rb-shade img {
+	aspect-ratio: 342 / 222;
+	object-fit: cover;
+	width: 100%;
+}
+
+@media (min-width: 782px) {
+	.wp-block-image.is-style-rb-shade img {
+		aspect-ratio: 403 / 282;
+	}
+}
+
+.wp-block-image.rb-radius-hero img {
+	border-radius: var(--wp--custom--radius--hero);
+}

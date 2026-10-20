@@ -1,0 +1,36 @@
+/**
+ * List — "Olive bullets" variation.
+ */
+
+.wp-block-list.is-style-rb-olive {
+	display: grid;
+	gap: var(--wp--preset--spacing--medium);
+	list-style: none;
+	padding: 0;
+}
+
+.wp-block-list.is-style-rb-olive > li {
+	line-height: 1.5;
+	padding-left: 2.6em;
+	position: relative;
+}
+
+.wp-block-list.is-style-rb-olive > li::before {
+	aspect-ratio: 69.9863 / 69.9863;
+	background: var(--wp--preset--color--forest);
+	content: "";
+	left: 0;
+	-webkit-mask: url(../../images/harvest-emblem.svg) center / contain no-repeat;
+	mask: url(../../images/harvest-emblem.svg) center / contain no-repeat;
+	position: absolute;
+	top: 0.05em;
+	width: 1.6em;
+}
+
+@media (min-width: 1024px) {
+	.wp-block-list.is-style-rb-olive {
+		column-gap: var(--wp--preset--spacing--xxx-large);
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		row-gap: var(--wp--preset--spacing--x-large);
+	}
+}

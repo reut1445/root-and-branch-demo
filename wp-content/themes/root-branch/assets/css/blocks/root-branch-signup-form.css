@@ -1,0 +1,117 @@
+/**
+ * Sign-up form (block from the Root & Branch Core plugin) — theme design.
+ *
+ * Floating labels: the label sits inside the field like the design's
+ * "Full Name:" text and moves up once the visitor types.
+ */
+
+.rb-signup {
+	display: flex;
+	flex-direction: column;
+	gap: 17px;
+}
+
+.rb-signup__trap {
+	height: 1px;
+	left: -10000px;
+	overflow: hidden;
+	position: absolute;
+	width: 1px;
+}
+
+.rb-signup__field {
+	position: relative;
+}
+
+.rb-signup__input {
+	background: transparent;
+	border: 1px solid var(--wp--custom--color--border-form);
+	border-radius: var(--wp--custom--radius--card);
+	box-sizing: border-box;
+	color: var(--wp--preset--color--black);
+	font-family: inherit;
+	font-size: clamp(0.875rem, 0.82rem + 0.25vw, 1.0625rem);
+	font-weight: 300;
+	height: 56px;
+	padding: 1.1em var(--wp--preset--spacing--small) 0.2em;
+	transition: border-color var(--rb-duration) var(--rb-ease), box-shadow var(--rb-duration) var(--rb-ease);
+	width: 100%;
+}
+
+.rb-signup__input:hover {
+	border-color: var(--wp--preset--color--forest);
+}
+
+.rb-signup__input:focus {
+	border-color: var(--wp--preset--color--forest);
+	box-shadow: 0 0 0 1px var(--wp--preset--color--forest);
+	outline: none;
+}
+
+.rb-signup__label {
+	color: var(--wp--preset--color--black);
+	font-size: clamp(0.875rem, 0.82rem + 0.25vw, 1.0625rem);
+	font-weight: 300;
+	left: var(--wp--preset--spacing--small);
+	pointer-events: none;
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	transform-origin: left top;
+	transition: transform var(--rb-duration) var(--rb-ease), top var(--rb-duration) var(--rb-ease);
+}
+
+.rb-signup__input:focus + .rb-signup__label,
+.rb-signup__input:not(:placeholder-shown) + .rb-signup__label {
+	top: 0.35em;
+	transform: scale(0.62);
+	font-weight: 400;
+}
+
+.rb-signup__submit.wp-element-button {
+	border-radius: var(--wp--custom--radius--pill);
+	cursor: pointer;
+	font-size: clamp(0.8125rem, 0.75rem + 0.25vw, 1rem);
+	font-weight: 500;
+	min-height: 56px;
+	width: 100%;
+}
+
+.rb-signup__submit[disabled] {
+	cursor: progress;
+	opacity: 0.7;
+}
+
+.rb-signup__status {
+	font-weight: 400;
+	min-height: 1.6em;
+}
+
+.rb-signup__status.is-success {
+	color: var(--wp--preset--color--forest);
+}
+
+.rb-signup__status.is-error {
+	color: #8a1c1c;
+}
+
+@media (min-width: 1024px) {
+	.rb-signup__input {
+		box-shadow: var(--wp--custom--shadow--field);
+		padding-inline: var(--wp--preset--spacing--xx-small);
+	}
+
+	.rb-signup__input:focus {
+		box-shadow: var(--wp--custom--shadow--field), 0 0 0 1px var(--wp--preset--color--forest);
+	}
+
+	.rb-signup__label {
+		left: var(--wp--preset--spacing--xx-small);
+	}
+
+	.rb-signup__submit.wp-element-button {
+		border: 1px solid var(--wp--custom--color--border-form);
+		border-radius: var(--wp--custom--radius--card);
+		box-shadow: var(--wp--custom--shadow--card);
+	}
+}

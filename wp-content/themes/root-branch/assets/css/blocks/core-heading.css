@@ -1,0 +1,15 @@
+/**
+ * Heading — "Olive branch above" variations.
+ */
+
+.wp-block-heading.is-style-rb-ornament::before,
+.wp-block-heading.is-style-rb-ornament-offset::before {
+	aspect-ratio: 190 / 36;
+	background: var(--wp--preset--color--forest);
+	content: "";
+	display: block;
+	margin: 0 auto clamp(1.5625rem, 1.2rem + 1.5vw, 2.3rem);
+	-webkit-mask: url(../../images/olive-branch.svg) center / contain no-repeat;
+	mask: url(../../images/olive-branch.svg) center / contain no-repeat;
+	width: clamp(170px, 14vw, 300px);
+}

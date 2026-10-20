@@ -1,0 +1,998 @@
+/**
+ * Group variations and section layouts.
+ */
+
+/* ------------------------------------------------------------------ *
+ * Intro
+ * ------------------------------------------------------------------ */
+
+.wp-block-post-content > .rb-intro {
+	margin-block-start: var(--wp--preset--spacing--section);
+}
+
+.rb-intro .wp-block-heading {
+	line-height: 1.05;
+}
+
+.rb-intro .rb-lead {
+	margin-top: var(--wp--preset--spacing--large);
+}
+
+/* ------------------------------------------------------------------ *
+ * Value rows
+ * ------------------------------------------------------------------ */
+
+.wp-block-post-content > .rb-value-rows {
+	margin-block-start: var(--wp--preset--spacing--section);
+}
+
+.rb-value-rows {
+	counter-reset: rb-row;
+	display: flex;
+	flex-direction: column;
+	padding-inline: max(var(--rb-gutter), (100% - var(--wp--style--global--wide-size)) / 2);
+}
+
+.rb-value-rows > * {
+	margin: 0;
+}
+
+.is-style-rb-value-row {
+	border-top: 1px solid var(--wp--custom--color--border-section);
+	counter-increment: rb-row;
+	display: grid;
+	gap: var(--wp--preset--spacing--medium);
+	padding-block: clamp(2rem, 1.5rem + 2vw, 3.5rem);
+	position: relative;
+	transition: opacity 0.5s var(--rb-ease, ease);
+}
+
+.is-style-rb-value-row:last-child {
+	border-bottom: 1px solid var(--wp--custom--color--border-section);
+}
+
+/* Small running number, e.g. 01 — decorative. */
+.is-style-rb-value-row::before {
+	color: var(--wp--preset--color--sage);
+	content: counter(rb-row, decimal-leading-zero);
+	font-size: var(--wp--preset--font-size--x-small);
+	font-weight: 500;
+	letter-spacing: 0.18em;
+}
+
+.is-style-rb-value-row > * {
+	margin: 0;
+}
+
+.is-style-rb-value-row .wp-block-heading {
+	line-height: 1.05;
+}
+
+.is-style-rb-value-row p {
+	max-width: 52ch;
+}
+
+.is-style-rb-value-row .wp-block-image {
+	perspective: 900px;
+}
+
+.is-style-rb-value-row .wp-block-image img {
+	will-change: transform;
+}
+
+@media (min-width: 782px) {
+	.is-style-rb-value-row {
+		align-items: center;
+		column-gap: clamp(2rem, 4vw, 5rem);
+		grid-template-columns: 3.5rem minmax(0, 0.9fr) minmax(0, 1.2fr) minmax(0, 0.8fr);
+	}
+
+	.is-style-rb-value-row::before {
+		align-self: start;
+		padding-top: 0.9em;
+	}
+
+	/* Hovering one row lets the others step back. */
+	.rb-value-rows:has(.is-style-rb-value-row:hover) .is-style-rb-value-row:not(:hover) {
+		opacity: 0.45;
+	}
+}
+
+/* ------------------------------------------------------------------ *
+ * Mission & objectives
+ * ------------------------------------------------------------------ */
+
+.rb-mission .rb-lead {
+	margin-top: var(--wp--preset--spacing--xx-small);
+}
+
+.rb-mission__cards {
+	display: grid;
+	gap: var(--wp--preset--spacing--medium);
+	margin-top: clamp(1.875rem, 1.2rem + 2.8vw, 3.65rem);
+}
+
+.rb-mission__cards > * {
+	margin: 0;
+}
+
+.rb-mission__cards {
+	perspective: 1400px;
+}
+
+.is-style-rb-mission-card {
+	align-items: center;
+	backface-visibility: hidden;
+	border-radius: var(--wp--custom--radius--card);
+	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06), 0 10px 24px -10px rgba(8, 48, 28, 0.35), 0 28px 48px -28px rgba(0, 0, 0, 0.35);
+	display: flex;
+	flex-direction: column;
+	gap: var(--wp--preset--spacing--medium);
+	padding: var(--wp--preset--spacing--x-large);
+	text-align: center;
+}
+
+.is-style-rb-mission-card::before {
+	background: currentColor;
+	content: "";
+	flex: none;
+	height: 68px;
+	-webkit-mask: url(../../images/harvest-emblem.svg) center / contain no-repeat;
+	mask: url(../../images/harvest-emblem.svg) center / contain no-repeat;
+	width: 68px;
+}
+
+.is-style-rb-mission-card > * {
+	margin: 0;
+}
+
+.is-style-rb-mission-card .wp-block-heading {
+	font-family: var(--wp--preset--font-family--body);
+	font-size: var(--wp--preset--font-size--card-title);
+	font-weight: 700;
+	line-height: 1.35;
+}
+
+.is-style-rb-mission-card p {
+	font-size: var(--wp--preset--font-size--small);
+	line-height: 1.6;
+}
+
+@media (min-width: 600px) and (max-width: 1023px) {
+	.rb-mission__cards {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+}
+
+@media (min-width: 1024px) {
+	.rb-mission__cards {
+		align-items: start;
+		gap: 2.1%;
+		grid-template-columns: repeat(5, minmax(0, 1fr));
+		padding-bottom: 3.5rem;
+	}
+
+	.is-style-rb-mission-card {
+		justify-content: center;
+		min-height: clamp(320px, 16rem + 6vw, 400px);
+		padding: var(--wp--preset--spacing--medium) var(--wp--preset--spacing--x-large);
+	}
+
+	.is-style-rb-mission-card p {
+		line-height: 1.5;
+	}
+
+	.is-style-rb-mission-card .wp-block-heading {
+		line-height: 1.1;
+	}
+
+	.rb-mission__cards > .is-style-rb-mission-card:nth-child(even) {
+		margin-top: 3.5rem;
+	}
+}
+
+/* ------------------------------------------------------------------ *
+ * Root & Branch in Action (collage section)
+ * ------------------------------------------------------------------ */
+
+.rb-in-action {
+	overflow-x: clip;
+	padding-top: var(--wp--preset--spacing--x-small);
+}
+
+.rb-in-action .rb-in-action__title {
+	line-height: 1.08;
+	margin-top: var(--wp--preset--spacing--x-large);
+}
+
+.rb-in-action .wp-block-buttons {
+	margin-top: var(--wp--preset--spacing--x-large);
+}
+
+@media (min-width: 1024px) {
+	.wp-block-post-content .rb-in-action.is-layout-constrained > h2.rb-in-action__title {
+		line-height: 1;
+		margin-top: -13.6vw;
+		max-width: 42vw;
+		position: relative;
+		text-wrap: balance;
+		z-index: 1;
+	}
+
+	.rb-in-action .wp-block-buttons {
+		margin-top: clamp(2rem, 4vw, 4rem);
+	}
+}
+
+/* ------------------------------------------------------------------ *
+ * Media cards (used in query loops)
+ * ------------------------------------------------------------------ */
+
+.is-style-rb-card {
+	background: var(--wp--custom--color--surface-card);
+	border: 1px solid var(--wp--custom--color--border-card);
+	border-radius: var(--wp--custom--radius--card);
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
+	gap: var(--wp--preset--spacing--small);
+	height: 100%;
+	padding: var(--wp--preset--spacing--xx-small);
+}
+
+.is-style-rb-card > * {
+	margin: 0;
+}
+
+.is-style-rb-card > :not(.wp-block-post-featured-image) {
+	padding-inline: var(--wp--preset--spacing--xx-small);
+}
+
+.is-style-rb-card .wp-block-post-featured-image {
+	aspect-ratio: 322 / 205;
+	overflow: hidden;
+}
+
+.is-style-rb-card .wp-block-post-featured-image :where(a, img) {
+	display: block;
+	height: 100%;
+	object-fit: cover;
+	width: 100%;
+}
+
+.rb-card__label {
+	font-size: var(--wp--preset--font-size--x-small);
+	font-style: italic;
+	font-weight: 500;
+	line-height: 1.4;
+	text-transform: uppercase;
+}
+
+.is-style-rb-card .wp-block-post-title {
+	line-height: 1.3;
+}
+
+.is-style-rb-card .wp-block-post-title a:hover {
+	text-decoration: underline;
+}
+
+.is-style-rb-card > :last-child:not(.wp-block-post-title) {
+	margin-top: auto;
+	margin-bottom: var(--wp--preset--spacing--xx-small);
+}
+
+@media (min-width: 1024px) {
+	.is-style-rb-card {
+		min-height: 100%;
+	}
+
+	.is-style-rb-card .wp-block-post-featured-image {
+		aspect-ratio: 299 / 188;
+	}
+
+	.is-style-rb-card .wp-block-post-title {
+		line-height: 1.14;
+	}
+}
+
+/* ------------------------------------------------------------------ *
+ * Rounded panel (Our Founders) and logo badge
+ * ------------------------------------------------------------------ */
+
+/* Badge sits on the seam between the hero and the panel, as in Figma:
+   52.5% over the hero, the rest over the panel (minus the 25px gap). */
+.is-style-rb-badge {
+	--rb-badge: clamp(130px, 13.39vw, 257px);
+	margin-bottom: calc(var(--rb-badge) * -0.475) !important;
+	margin-top: calc(var(--rb-badge) * -0.525) !important;
+	pointer-events: none;
+	position: relative;
+	z-index: 3;
+}
+
+.is-style-rb-badge .wp-block-site-logo {
+	align-items: center;
+	background: var(--wp--preset--color--cream);
+	border-radius: 50%;
+	display: flex;
+	height: var(--rb-badge);
+	justify-content: center;
+	pointer-events: auto;
+	width: var(--rb-badge);
+}
+
+.is-style-rb-badge .wp-block-site-logo a {
+	display: block;
+	width: 80.4%;
+}
+
+.is-style-rb-badge .wp-block-site-logo img {
+	display: block;
+	height: auto;
+	width: 100%;
+}
+
+.wp-block-post-content > .is-style-rb-badge + * {
+	margin-block-start: 0 !important;
+	margin-top: 0 !important;
+}
+
+.wp-block-post-content > .is-style-rb-badge + .is-style-rb-panel {
+	margin-top: 25px !important;
+}
+
+.wp-block-post-content > .is-style-rb-founder {
+	margin-block-start: clamp(3rem, 2rem + 3vw, 5rem);
+}
+
+.is-style-rb-panel {
+	border-radius: var(--wp--custom--radius--hero);
+	box-sizing: border-box;
+	overflow: hidden;
+	padding: clamp(5rem, 4rem + 4vw, 6rem) clamp(1.5rem, 1rem + 2vw, 3.875rem) clamp(2.5rem, 2rem + 2vw, 4rem);
+	position: relative;
+}
+
+.has-global-padding > .is-style-rb-panel.alignfull {
+	margin-left: calc(var(--wp--style--root--padding-left) * -1 + var(--rb-edge));
+	margin-right: calc(var(--wp--style--root--padding-right) * -1 + var(--rb-edge));
+}
+
+.is-style-rb-panel.rb-founders {
+	display: grid;
+	gap: var(--wp--preset--spacing--x-large);
+	margin-block-start: var(--wp--preset--spacing--large);
+}
+
+.rb-founders::before {
+	aspect-ratio: 509 / 389;
+	background: var(--wp--preset--color--cream);
+	content: "";
+	left: 0;
+	-webkit-mask: url(../../images/olive-sprig.svg) center / contain no-repeat;
+	mask: url(../../images/olive-sprig.svg) center / contain no-repeat;
+	opacity: 0.1;
+	pointer-events: none;
+	position: absolute;
+	top: 2.66%;
+	transform: scaleX(-1);
+	width: clamp(200px, 26.5vw, 509px);
+}
+
+.rb-founders > * {
+	margin: 0;
+	position: relative;
+}
+
+.rb-founders .wp-block-heading {
+	line-height: 0.94;
+}
+
+.rb-founders__text p {
+	line-height: 1.15;
+	margin-top: var(--wp--preset--spacing--large);
+}
+
+.rb-founders__photo img {
+	aspect-ratio: 540 / 720;
+	object-fit: cover;
+	width: 100%;
+}
+
+@media (min-width: 1024px) {
+	.is-style-rb-panel.rb-founders {
+		align-items: center;
+		grid-template-columns: minmax(0, 949px) minmax(0, 545px);
+		justify-content: space-between;
+		min-height: 48.9vw;
+		padding-block: 4.48vw;
+		padding-right: clamp(3rem, 3.2vw, 4rem);
+	}
+
+	.rb-founders__text {
+		align-self: end;
+		padding-bottom: 7vw;
+	}
+
+	.rb-founders__text p {
+		margin-top: var(--wp--preset--spacing--xx-large);
+		max-width: 912px;
+	}
+
+	.rb-founders__photo {
+		transform: rotate(4deg);
+	}
+}
+
+/* ------------------------------------------------------------------ *
+ * Founder profiles (staggered three columns)
+ * ------------------------------------------------------------------ */
+
+.is-style-rb-founder,
+.is-style-rb-founder-mirror {
+	border-bottom: 1px solid var(--wp--custom--color--border-section);
+	display: grid;
+	gap: var(--wp--preset--spacing--x-large);
+	padding: var(--wp--preset--spacing--section) var(--rb-gutter) 0;
+	position: relative;
+}
+
+.wp-block-post-content > .is-style-rb-founder-mirror {
+	margin-block-start: 0;
+}
+
+.is-style-rb-founder > *,
+.is-style-rb-founder-mirror > * {
+	margin: 0;
+	position: relative;
+}
+
+.rb-founder__portrait {
+	display: flex;
+	flex-direction: column;
+	gap: var(--wp--preset--spacing--x-large);
+}
+
+.rb-founder__portrait .wp-block-heading {
+	line-height: 1.17;
+	margin: 0;
+	text-wrap: balance;
+}
+
+.rb-founder__portrait .wp-block-image {
+	margin: 0 auto;
+}
+
+.rb-founder__portrait img {
+	border-radius: 0;
+	display: block;
+	mix-blend-mode: multiply;
+}
+
+.rb-founder__bio,
+.rb-founder__more {
+	display: flex;
+	flex-direction: column;
+	gap: var(--wp--preset--spacing--large);
+	padding-bottom: var(--wp--preset--spacing--x-large);
+}
+
+.rb-founder__bio > *,
+.rb-founder__more > * {
+	margin: 0;
+}
+
+.rb-founder__lead {
+	font-weight: 700;
+	line-height: 1.15;
+}
+
+.rb-founder__bio .rb-muted,
+.rb-founder__more .rb-muted {
+	line-height: 1.28;
+}
+
+/* Olive branch ornaments above the text columns. */
+.rb-founder__bio::before,
+.rb-founder__more::before {
+	aspect-ratio: 341 / 65;
+	background: var(--wp--preset--color--forest);
+	content: "";
+	display: block;
+	margin-inline: auto;
+	-webkit-mask: url(../../images/olive-branch.svg) center / contain no-repeat;
+	mask: url(../../images/olive-branch.svg) center / contain no-repeat;
+	width: clamp(150px, 12vw, 240px);
+}
+
+/* Faint olive sprig in the corner of the first profile. */
+.is-style-rb-founder::after {
+	aspect-ratio: 509 / 389;
+	background: var(--wp--preset--color--black);
+	content: "";
+	-webkit-mask: url(../../images/olive-sprig.svg) center / contain no-repeat;
+	mask: url(../../images/olive-sprig.svg) center / contain no-repeat;
+	opacity: 0.09;
+	pointer-events: none;
+	position: absolute;
+	right: -2.4vw;
+	top: 4vw;
+	width: clamp(180px, 26.5vw, 509px);
+	z-index: -1;
+}
+
+@media (min-width: 1024px) {
+	.is-style-rb-founder,
+	.is-style-rb-founder-mirror {
+		align-items: end;
+		column-gap: 1.8vw;
+		padding: 0;
+	}
+
+	.is-style-rb-founder {
+		grid-template-columns: 35.5vw 26.5vw 26vw;
+		padding-left: 2.1vw;
+	}
+
+	.is-style-rb-founder .rb-founder__bio {
+		align-self: start;
+		padding-top: 10.9vw;
+	}
+
+	.is-style-rb-founder .rb-founder__more {
+		align-self: start;
+		padding-top: 31.7vw;
+	}
+
+	.is-style-rb-founder-mirror {
+		grid-template-areas: "bio more portrait";
+		grid-template-columns: 26.2vw 23.3vw 40.7vw;
+		justify-content: end;
+		padding-left: 6.8vw;
+		padding-top: 4vw;
+	}
+
+	.is-style-rb-founder-mirror .rb-founder__portrait {
+		grid-area: portrait;
+	}
+
+	.is-style-rb-founder-mirror .rb-founder__bio {
+		align-self: start;
+		grid-area: bio;
+		padding-top: 9.3vw;
+	}
+
+	.is-style-rb-founder-mirror .rb-founder__more {
+		align-self: start;
+		grid-area: more;
+		padding-top: 36vw;
+	}
+
+	.is-style-rb-founder .rb-founder__portrait img {
+		width: 28.65vw;
+	}
+
+	.is-style-rb-founder-mirror .rb-founder__portrait img {
+		width: 40.7vw;
+	}
+
+	.rb-founder__bio::before,
+	.rb-founder__more::before {
+		margin-bottom: 1.2vw;
+	}
+
+	.rb-founder__lead {
+		max-width: 509px;
+	}
+}
+
+/* ------------------------------------------------------------------ *
+ * Historical achievement
+ * ------------------------------------------------------------------ */
+
+.rb-history > p {
+	margin-top: var(--wp--preset--spacing--x-large);
+}
+
+.rb-history > p + p {
+	line-height: 1.45;
+}
+
+.rb-history > .wp-block-image {
+	margin-top: var(--wp--preset--spacing--x-large);
+}
+
+/* ------------------------------------------------------------------ *
+ * Timeline
+ * ------------------------------------------------------------------ */
+
+.is-style-rb-timeline {
+	--rb-dot: clamp(17px, 0.7rem + 0.8vw, 33px);
+	display: flex;
+	flex-direction: column;
+	gap: clamp(3rem, 2rem + 6vw, 16rem);
+	padding-left: calc(var(--rb-dot) + clamp(1rem, 0.5rem + 1.5vw, 2rem));
+	position: relative;
+}
+
+.is-style-rb-timeline::before {
+	background: var(--wp--preset--color--forest);
+	bottom: 0;
+	content: "";
+	left: calc(var(--rb-dot) / 2 - 1px);
+	position: absolute;
+	top: calc(var(--rb-dot) / 2);
+	width: 2px;
+}
+
+.is-style-rb-timeline > * {
+	margin: 0;
+}
+
+.is-style-rb-timeline-item {
+	display: grid;
+	gap: var(--wp--preset--spacing--large);
+	position: relative;
+}
+
+.is-style-rb-timeline-item::before {
+	background: var(--wp--preset--color--forest);
+	border-radius: 50%;
+	content: "";
+	height: var(--rb-dot);
+	left: calc((var(--rb-dot) + clamp(1rem, 0.5rem + 1.5vw, 2rem)) * -1);
+	position: absolute;
+	top: 0.4em;
+	width: var(--rb-dot);
+}
+
+.is-style-rb-timeline-item > * {
+	margin: 0;
+}
+
+.is-style-rb-timeline-item .wp-block-heading {
+	line-height: 1;
+}
+
+.rb-timeline-item__body {
+	display: flex;
+	flex-direction: column;
+	gap: clamp(1.25rem, 1rem + 1vw, 2.06rem);
+}
+
+.rb-timeline-item__body > * {
+	margin: 0;
+}
+
+.rb-timeline-item__body p {
+	line-height: 1.45;
+}
+
+.rb-timeline-item__body img {
+	aspect-ratio: 606 / 289;
+	object-fit: cover;
+	width: 100%;
+}
+
+@media (min-width: 1024px) {
+	.is-style-rb-timeline-item {
+		align-items: start;
+		gap: 5vw;
+		grid-template-columns: minmax(0, 878fr) minmax(0, 606fr);
+	}
+
+	.is-style-rb-timeline-item::before {
+		top: clamp(1.9rem, 1.8vw, 2.6rem);
+	}
+
+	.is-style-rb-timeline-item .wp-block-heading {
+		padding-top: clamp(1rem, 1vw, 1.75rem);
+		text-align: center;
+	}
+}
+
+/* ------------------------------------------------------------------ *
+ * Statement with photos
+ *
+ * Desktop: photo | words | photo, all inside the screen and symmetric.
+ * Phones: words, then the two photos side by side, then the signature.
+ * (The photos group is display: contents so its figures join the grid.)
+ * ------------------------------------------------------------------ */
+
+.wp-block-post-content > .is-style-rb-statement {
+	margin-block-start: var(--wp--preset--spacing--section);
+}
+
+.is-style-rb-statement {
+	align-items: center;
+	box-sizing: border-box;
+	display: grid;
+	gap: var(--wp--preset--spacing--x-large) var(--wp--preset--spacing--medium);
+	grid-template-areas:
+		"text text"
+		"left right"
+		"sign sign";
+	grid-template-columns: 1fr 1fr;
+	overflow: clip;
+	padding-block: 64px;
+	position: relative;
+}
+
+.is-style-rb-statement > * {
+	margin: 0 !important;
+	max-width: none;
+}
+
+.is-style-rb-statement > p.rb-statement__text {
+	grid-area: text;
+	justify-self: center;
+	line-height: 1.17;
+	max-width: 11.5em;
+	text-wrap: balance;
+}
+
+.is-style-rb-statement > .rb-statement__photos {
+	display: contents;
+}
+
+.rb-statement__photos .wp-block-image {
+	margin: 0;
+	width: 100%;
+}
+
+.rb-statement__photos .wp-block-image:first-child {
+	grid-area: left;
+	rotate: -4deg;
+}
+
+.rb-statement__photos .wp-block-image:last-child {
+	grid-area: right;
+	rotate: 4deg;
+}
+
+.rb-statement__photos img {
+	aspect-ratio: 2 / 3;
+	border-radius: var(--wp--custom--radius--card);
+	box-shadow: 0 24px 50px -28px rgba(0, 0, 0, 0.55);
+	display: block;
+	object-fit: cover;
+	width: 100%;
+}
+
+.is-style-rb-statement .is-style-rb-signature {
+	grid-area: sign;
+	justify-self: center;
+}
+
+@media (min-width: 1024px) {
+	.is-style-rb-statement {
+		column-gap: clamp(2rem, 5vw, 6rem);
+		grid-template-areas:
+			"left text right"
+			"left sign right";
+		grid-template-columns: minmax(0, 1fr) minmax(0, 44rem) minmax(0, 1fr);
+		grid-template-rows: auto auto;
+		min-height: 100svh;
+		padding: clamp(3rem, 6vh, 5rem) max(var(--rb-gutter), (100% - var(--wp--style--global--wide-size)) / 2);
+		row-gap: clamp(2rem, 5vh, 3.5rem);
+	}
+
+	.is-style-rb-statement > p.rb-statement__text {
+		align-self: end;
+	}
+
+	.is-style-rb-statement .is-style-rb-signature {
+		align-self: start;
+	}
+
+	.rb-statement__photos .wp-block-image {
+		align-self: center;
+		max-width: 360px;
+	}
+
+	.rb-statement__photos .wp-block-image:first-child {
+		justify-self: start;
+		rotate: -6deg;
+	}
+
+	.rb-statement__photos .wp-block-image:last-child {
+		justify-self: end;
+		rotate: 6deg;
+	}
+}
+
+/* ------------------------------------------------------------------ *
+ * Composed sections (Tour, Gallery, policy pages)
+ * ------------------------------------------------------------------ */
+
+.rb-nowrap {
+	white-space: nowrap;
+}
+
+.rb-gallery-page .wp-block-gallery,
+.rb-tour-highlights .wp-block-gallery,
+.rb-tour-journey .wp-block-list,
+.rb-tour-about > p + p,
+.rb-tour-info > p,
+.rb-policy > *,
+.rb-tour-itinerary > * + * {
+	margin-top: var(--wp--preset--spacing--x-large);
+}
+
+.rb-tour-about > .rb-lead,
+.rb-tour-highlights > .rb-lead,
+.rb-tour-itinerary > .rb-lead {
+	margin-top: var(--wp--preset--spacing--medium);
+}
+
+.rb-tour-journey .wp-block-heading,
+.rb-policy .wp-block-heading {
+	text-wrap: balance;
+}
+
+.rb-tour-info > p,
+.rb-tour-about > p + p,
+.rb-policy p {
+	font-size: var(--wp--preset--font-size--medium);
+	line-height: 1.6;
+}
+
+/* Cost panel. */
+.rb-tour-cost > * + * {
+	margin-top: var(--wp--preset--spacing--large);
+}
+
+.rb-tour-cost .wp-block-heading {
+	line-height: 1.1;
+}
+
+.rb-terms {
+	display: grid;
+	gap: var(--wp--preset--spacing--x-large);
+	margin-top: var(--wp--preset--spacing--xx-large) !important;
+}
+
+.rb-terms__item > * + * {
+	margin-top: var(--wp--preset--spacing--x-small);
+}
+
+.rb-terms__title.wp-block-heading {
+	font-family: var(--wp--preset--font-family--body);
+	font-size: var(--wp--preset--font-size--card-title);
+	font-weight: 700;
+	line-height: 1.35;
+}
+
+.rb-terms a {
+	color: inherit;
+}
+
+/* Registration option cards. */
+.rb-options {
+	align-items: stretch;
+	display: grid;
+	gap: var(--wp--preset--spacing--medium);
+	margin-top: clamp(1.875rem, 1.2rem + 2.8vw, 3.65rem);
+}
+
+.rb-options.rb-options > * {
+	margin: 0;
+}
+
+.rb-tour-options > p {
+	margin-top: var(--wp--preset--spacing--x-large);
+}
+
+/* Price cards: the number is the hero of the card. */
+.is-style-rb-mission-card.rb-option {
+	gap: var(--wp--preset--spacing--small);
+	padding: clamp(1.75rem, 1.2rem + 1.5vw, 2.75rem) clamp(1.25rem, 1rem + 1vw, 2rem);
+}
+
+.is-style-rb-mission-card.rb-option .rb-mission-card__title {
+	font-size: clamp(1.0625rem, 1rem + 0.3vw, 1.3125rem);
+	line-height: 1.3;
+	text-wrap: balance;
+}
+
+.is-style-rb-mission-card p.rb-price {
+	font-family: var(--wp--preset--font-family--body);
+	font-size: clamp(2.5rem, 2rem + 2vw, 3.75rem);
+	font-variant-numeric: lining-nums tabular-nums;
+	font-weight: 600;
+	letter-spacing: -0.02em;
+	line-height: 1;
+	margin-top: var(--wp--preset--spacing--x-small);
+}
+
+.is-style-rb-mission-card p.rb-price-note {
+	font-size: var(--wp--preset--font-size--medium);
+	font-weight: 500;
+	line-height: 1.4;
+}
+
+.is-style-rb-mission-card p.rb-option__meta {
+	border-top: 1px solid currentColor;
+	font-size: var(--wp--preset--font-size--x-small);
+	line-height: 1.5;
+	margin-top: var(--wp--preset--spacing--x-small);
+	opacity: 0.85;
+	padding-top: var(--wp--preset--spacing--small);
+}
+
+.rb-options .is-style-rb-mission-card .wp-block-buttons {
+	margin-top: auto;
+	padding-top: var(--wp--preset--spacing--medium);
+	width: 100%;
+}
+
+/* Call to action: unmistakably a button. */
+.wp-block-button.rb-cta {
+	width: 100%;
+}
+
+.wp-block-button.rb-cta .wp-block-button__link {
+	align-items: center;
+	box-shadow: 0 10px 22px -10px rgba(0, 0, 0, 0.55);
+	display: flex;
+	font-size: clamp(0.875rem, 0.8rem + 0.3vw, 1rem);
+	font-weight: 600;
+	gap: 0.5em;
+	justify-content: center;
+	letter-spacing: 0.04em;
+	min-height: 54px;
+	width: 100%;
+}
+
+.wp-block-button.rb-cta.is-style-rb-sand .wp-block-button__link {
+	background: var(--wp--preset--color--sand);
+	color: var(--wp--preset--color--earth);
+	min-height: 54px;
+}
+
+.wp-block-button.rb-cta .wp-block-button__link:hover {
+	background: var(--wp--preset--color--forest);
+	color: var(--wp--preset--color--white);
+}
+
+.wp-block-button.rb-cta.is-style-rb-sand .wp-block-button__link:hover {
+	background: var(--wp--preset--color--white);
+	color: var(--wp--preset--color--forest);
+}
+
+/* Compact timeline (itinerary): text only. */
+.is-style-rb-timeline.rb-timeline--compact {
+	gap: clamp(2rem, 1.5rem + 2vw, 4rem);
+}
+
+.rb-timeline--compact .is-style-rb-timeline-item .wp-block-heading {
+	font-family: var(--wp--preset--font-family--display);
+	text-align: left;
+}
+
+@media (min-width: 782px) {
+	.rb-terms,
+	.rb-options {
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+	}
+}
+
+@media (min-width: 1024px) {
+	.rb-options {
+		gap: var(--wp--preset--spacing--x-large);
+	}
+
+	.rb-timeline--compact .is-style-rb-timeline-item {
+		gap: 4vw;
+		grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+	}
+
+	.rb-timeline--compact .is-style-rb-timeline-item::before {
+		top: 0.9rem;
+	}
+
+	.rb-timeline--compact .is-style-rb-timeline-item .wp-block-heading {
+		padding-top: 0;
+		text-align: left;
+	}
+}
