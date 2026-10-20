@@ -1,0 +1,128 @@
+/**
+ * Gallery variations.
+ *
+ * Scattered collage — the "Root & Branch in Action" composition:
+ * a 3-column staggered mosaic on small screens and twelve floating
+ * tiles across the full width on desktop. Tiles beyond twelve are hidden
+ * on desktop so the composition never breaks.
+ *
+ * Masonry — the full Gallery page.
+ */
+
+.wp-block-gallery.has-nested-images.is-style-rb-scatter {
+	display: grid;
+	gap: var(--wp--preset--spacing--x-small);
+	grid-auto-flow: column;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	grid-template-rows: repeat(4, auto);
+	padding-bottom: 35px;
+}
+
+.wp-block-gallery.has-nested-images.is-style-rb-scatter.alignfull {
+	margin-inline: 0;
+}
+
+.wp-block-gallery.has-nested-images.is-style-rb-scatter figure.wp-block-image:not(#individual-image) {
+	aspect-ratio: 106 / 123;
+	border-radius: var(--wp--custom--radius--card);
+	margin: 0;
+	overflow: hidden;
+	width: auto;
+}
+
+.wp-block-gallery.has-nested-images.is-style-rb-scatter figure.wp-block-image img {
+	border-radius: 0;
+	height: 100%;
+	object-fit: cover;
+	width: 100%;
+}
+
+.wp-block-gallery.is-style-rb-scatter > .wp-block-image {
+	position: relative;
+}
+
+@media (max-width: 1023px) {
+	.wp-block-gallery.is-style-rb-scatter > .wp-block-image:nth-child(n + 5):nth-child(-n + 8) {
+		top: 35px;
+	}
+
+	.wp-block-gallery.is-style-rb-scatter > .wp-block-image:nth-child(n + 9) {
+		top: 15px;
+	}
+}
+
+.wp-block-gallery.is-style-rb-scatter > .wp-block-image:nth-child(n + 13) {
+	display: none;
+}
+
+@media (min-width: 1024px) {
+	.wp-block-gallery.has-nested-images.is-style-rb-scatter {
+		aspect-ratio: 1990 / 746;
+		display: block;
+		padding: 0;
+		position: relative;
+	}
+
+	.has-global-padding > .wp-block-gallery.has-nested-images.is-style-rb-scatter.alignfull {
+		margin-left: calc(var(--wp--style--root--padding-left) * -1 - 1.5625vw);
+		margin-right: calc(var(--wp--style--root--padding-right) * -1 - 2.08vw);
+	}
+
+	.wp-block-gallery.has-nested-images.is-style-rb-scatter figure.wp-block-image:not(#individual-image) {
+		aspect-ratio: auto;
+		height: 33.244%;
+		position: absolute;
+		width: 10.553%;
+	}
+
+	.wp-block-gallery.is-style-rb-scatter > .wp-block-image:nth-child(1) { left: 0; top: 29.49%; }
+	.wp-block-gallery.is-style-rb-scatter > .wp-block-image:nth-child(2) { left: 0; top: 66.76%; }
+	.wp-block-gallery.is-style-rb-scatter > .wp-block-image:nth-child(3) { left: 13.417%; top: 10.858%; }
+	.wp-block-gallery.is-style-rb-scatter > .wp-block-image:nth-child(4) { left: 13.417%; top: 48.123%; }
+	.wp-block-gallery.is-style-rb-scatter > .wp-block-image:nth-child(5) { left: 26.131%; top: 27.48%; }
+	.wp-block-gallery.is-style-rb-scatter > .wp-block-image:nth-child(6) { left: 38.191%; top: 10.858%; }
+	.wp-block-gallery.is-style-rb-scatter > .wp-block-image:nth-child(7) { left: 50.955%; top: 21.18%; }
+	.wp-block-gallery.is-style-rb-scatter > .wp-block-image:nth-child(8) { left: 63.317%; top: 0; }
+	.wp-block-gallery.is-style-rb-scatter > .wp-block-image:nth-child(9) { left: 76.683%; top: 8.847%; }
+	.wp-block-gallery.is-style-rb-scatter > .wp-block-image:nth-child(10) { left: 76.683%; top: 46.113%; }
+	.wp-block-gallery.is-style-rb-scatter > .wp-block-image:nth-child(11) { left: 89.447%; top: 29.49%; }
+	.wp-block-gallery.is-style-rb-scatter > .wp-block-image:nth-child(12) { left: 89.447%; top: 66.76%; }
+}
+
+/* Masonry */
+.wp-block-gallery.has-nested-images.is-style-rb-masonry {
+	column-count: 1;
+	column-gap: var(--wp--preset--spacing--medium);
+	display: block;
+}
+
+.wp-block-gallery.has-nested-images.is-style-rb-masonry figure.wp-block-image:not(#individual-image) {
+	break-inside: avoid;
+	display: block;
+	margin: 0 0 var(--wp--preset--spacing--medium);
+	width: 100%;
+}
+
+.wp-block-gallery.has-nested-images.is-style-rb-masonry figure.wp-block-image img {
+	border-radius: var(--wp--custom--radius--card);
+	display: block;
+	height: auto;
+	width: 100%;
+}
+
+@media (min-width: 600px) {
+	.wp-block-gallery.has-nested-images.is-style-rb-masonry {
+		column-count: 2;
+	}
+}
+
+@media (min-width: 1024px) {
+	.wp-block-gallery.has-nested-images.is-style-rb-masonry {
+		column-count: 3;
+		column-gap: var(--wp--preset--spacing--x-large);
+	}
+
+	.wp-block-gallery.has-nested-images.is-style-rb-masonry figure.wp-block-image:not(#individual-image) {
+		margin-bottom: var(--wp--preset--spacing--x-large);
+	}
+}

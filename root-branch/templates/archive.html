@@ -1,0 +1,35 @@
+<!-- wp:template-part {"slug":"header","tagName":"header"} /-->
+
+<!-- wp:group {"tagName":"main","anchor":"main","className":"rb-main-simple","style":{"spacing":{"margin":{"top":"0"}}},"layout":{"type":"constrained"}} -->
+<main id="main" class="wp-block-group rb-main-simple" style="margin-top:0"><!-- wp:query-title {"type":"archive","showPrefix":false,"textAlign":"center","level":1,"className":"rb-page-title"} /-->
+
+<!-- wp:term-description {"textAlign":"center","className":"rb-lead"} /-->
+
+<!-- wp:query {"queryId":1,"query":{"perPage":12,"pages":0,"offset":0,"postType":"post","order":"desc","orderBy":"date","inherit":true},"align":"wide","className":"rb-cards"} -->
+<div class="wp-block-query alignwide rb-cards"><!-- wp:post-template {"className":"rb-card-grid","layout":{"type":"default"}} -->
+<!-- wp:group {"className":"is-style-rb-card","layout":{"type":"default"}} -->
+<div class="wp-block-group is-style-rb-card"><!-- wp:post-featured-image {"isLink":true,"sizeSlug":"medium_large"} /-->
+
+<!-- wp:post-terms {"term":"category","className":"rb-card__label"} /-->
+
+<!-- wp:post-title {"level":2,"isLink":true} /-->
+
+<!-- wp:read-more {"content":"READ MORE →","className":"is-style-rb-button"} /--></div>
+<!-- /wp:group -->
+<!-- /wp:post-template -->
+
+<!-- wp:query-pagination {"layout":{"type":"flex","justifyContent":"center"}} -->
+<!-- wp:query-pagination-previous /-->
+<!-- wp:query-pagination-numbers /-->
+<!-- wp:query-pagination-next /-->
+<!-- /wp:query-pagination -->
+
+<!-- wp:query-no-results -->
+<!-- wp:paragraph {"align":"center"} -->
+<p class="has-text-align-center">Nothing has been published here yet.</p>
+<!-- /wp:paragraph -->
+<!-- /wp:query-no-results --></div>
+<!-- /wp:query --></main>
+<!-- /wp:group -->
+
+<!-- wp:template-part {"slug":"footer","tagName":"footer"} /-->

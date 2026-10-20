@@ -1,0 +1,29 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "root-branch/signup-form",
+	"version": "1.0.0",
+	"title": "Sign-up form",
+	"category": "widgets",
+	"icon": "email-alt",
+	"description": "Name, email and phone sign-up form. Submissions are saved under Sign-ups in the dashboard and emailed to the address set in Settings → General.",
+	"keywords": [ "form", "register", "newsletter", "contact", "sign up" ],
+	"textdomain": "root-branch-core",
+	"attributes": {
+		"nameLabel": { "type": "string", "default": "Full Name:" },
+		"emailLabel": { "type": "string", "default": "Email:" },
+		"phoneLabel": { "type": "string", "default": "Phone Number:" },
+		"showPhone": { "type": "boolean", "default": true },
+		"buttonText": { "type": "string", "default": "SIGN UP TODAY!" },
+		"successMessage": { "type": "string", "default": "Thank you for registering! We will be in touch with updates soon." },
+		"listName": { "type": "string", "default": "Register for More Information" }
+	},
+	"supports": {
+		"html": false,
+		"multiple": true,
+		"reusable": true
+	},
+	"editorScript": "file:./index.js",
+	"viewScript": "file:./view.js",
+	"render": "file:./render.php"
+}

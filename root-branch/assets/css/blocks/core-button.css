@@ -1,0 +1,89 @@
+/**
+ * Buttons: base pill comes from theme.json (elements.button).
+ * Variations: Sand pill (header), Card button, and the hero "notch".
+ */
+
+.wp-block-button__link {
+	transition: background-color var(--rb-duration) var(--rb-ease), color var(--rb-duration) var(--rb-ease);
+}
+
+/* Sand pill — header call to action. */
+.wp-block-button.is-style-rb-sand .wp-block-button__link {
+	align-items: center;
+	background-color: var(--wp--preset--color--sand);
+	color: var(--wp--preset--color--earth);
+	display: inline-flex;
+	font-size: clamp(0.75rem, 0.7rem + 0.2vw, 0.9375rem);
+	font-weight: 500;
+	justify-content: center;
+	line-height: 1.15;
+	min-height: clamp(36px, 2.1rem + 0.3vw, 42px);
+	min-width: clamp(118px, 6.8rem + 1.6vw, 150px);
+	padding: 0.4em 0.9em;
+	white-space: nowrap;
+}
+
+.wp-block-button.is-style-rb-sand .wp-block-button__link:hover {
+	background-color: var(--wp--preset--color--white);
+	color: var(--wp--preset--color--earth);
+}
+
+/* Card button — full width, compact. */
+.wp-block-button.is-style-rb-block {
+	width: 100%;
+}
+
+.wp-block-button.is-style-rb-block .wp-block-button__link {
+	display: flex;
+	font-weight: 700;
+	justify-content: center;
+	min-height: 44px;
+	padding-block: 0.4em;
+	width: 100%;
+}
+
+/*
+ * Hero notch: the button sits in a cream tab cut into the bottom of the
+ * hero photo, with concave corners on both sides.
+ */
+.wp-block-buttons.is-style-rb-notch {
+	--rb-notch-corner-w: clamp(20px, 1.091rem + 0.6536vw, 30px);
+	--rb-notch-corner-h: clamp(25px, 1.371rem + 0.7843vw, 37px);
+	background: var(--wp--preset--color--cream);
+	border-radius: var(--wp--custom--radius--cta-notch) var(--wp--custom--radius--cta-notch) 0 0;
+	bottom: 0;
+	left: 50%;
+	margin: 0;
+	padding: clamp(10px, 0.5772rem + 0.1961vw, 13px) 10px 0;
+	position: absolute;
+	transform: translateX(-50%);
+	z-index: 2;
+}
+
+.wp-block-buttons.is-style-rb-notch::before,
+.wp-block-buttons.is-style-rb-notch::after {
+	bottom: 0;
+	content: "";
+	height: var(--rb-notch-corner-h);
+	position: absolute;
+	width: var(--rb-notch-corner-w);
+}
+
+.wp-block-buttons.is-style-rb-notch::before {
+	background: radial-gradient(var(--rb-notch-corner-w) var(--rb-notch-corner-h) at 0 0, transparent 98%, var(--wp--preset--color--cream) 100%);
+	right: 100%;
+}
+
+.wp-block-buttons.is-style-rb-notch::after {
+	background: radial-gradient(var(--rb-notch-corner-w) var(--rb-notch-corner-h) at 100% 0, transparent 98%, var(--wp--preset--color--cream) 100%);
+	left: 100%;
+}
+
+.wp-block-buttons.is-style-rb-notch .wp-block-button__link {
+	align-items: center;
+	display: inline-flex;
+	justify-content: center;
+	min-height: clamp(48px, 2.8rem + 0.6vw, 60px);
+	min-width: clamp(240px, 13rem + 5vw, 320px);
+	padding-block: 0.5em;
+}

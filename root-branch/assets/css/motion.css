@@ -1,0 +1,334 @@
+/**
+ * Root & Branch — motion styles.
+ *
+ * GSAP (assets/js/motion.js) drives the scroll choreography; this file holds
+ * page transitions, the hero entrance, the starting states that prevent a
+ * flash before JavaScript runs, class-toggled reveals and hover details.
+ *
+ * Starting states apply only while html.rb-motion is set (the head script
+ * sets it, and removes it after 3 s if motion.js never ran). Nothing here
+ * runs for prefers-reduced-motion.
+ */
+
+:root {
+	--rb-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+	--rb-ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+/* Split text: masks keep descenders; letters stay inline. */
+.rb-w {
+	display: inline-block;
+	margin-bottom: -0.1em;
+	overflow: clip;
+	overflow-clip-margin: 0.2em;
+	padding-bottom: 0.1em;
+	vertical-align: top;
+}
+
+.rb-w__i,
+.rb-word {
+	display: inline-block;
+}
+
+.rb-word {
+	white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+
+	/* ------------------------------------------------------------------ *
+	 * Page transitions
+	 * ------------------------------------------------------------------ */
+
+	@view-transition {
+		navigation: auto;
+	}
+
+	.wp-site-blocks > header.wp-block-template-part {
+		view-transition-name: rb-header;
+	}
+
+	::view-transition-old(root) {
+		animation: rb-vt-out 0.35s var(--rb-ease-in-out) both;
+	}
+
+	::view-transition-new(root) {
+		animation: rb-vt-in 0.7s var(--rb-ease-out) both;
+	}
+
+	@keyframes rb-vt-out {
+		to { opacity: 0; transform: translateY(-12px); }
+	}
+
+	@keyframes rb-vt-in {
+		from { opacity: 0; transform: translateY(18px); }
+	}
+
+	/* ------------------------------------------------------------------ *
+	 * Hero entrance (waits for the loader when it is showing)
+	 * ------------------------------------------------------------------ */
+
+	.rb-motion .is-style-rb-hero :is(.wp-block-cover__image-background, .wp-block-cover__video-background) {
+		scale: 1.12;
+		transition: scale 2.8s var(--rb-ease-out);
+	}
+
+	.rb-motion .is-style-rb-hero.is-in :is(.wp-block-cover__image-background, .wp-block-cover__video-background) {
+		scale: 1.04;
+	}
+
+	.rb-motion .is-style-rb-hero h1 .rb-w__i {
+		transform: translateY(115%) rotate(4deg);
+		transform-origin: 0 100%;
+		transition: transform 1.3s var(--rb-ease-out);
+		transition-delay: calc(0.25s + var(--w, 0) * 0.08s);
+	}
+
+	.rb-motion .is-style-rb-hero.is-in h1 .rb-w__i {
+		transform: none;
+	}
+
+	.rb-motion .is-style-rb-hero .rb-hero__subtitle,
+	.rb-motion .is-style-rb-hero .wp-block-cover__inner-container > p {
+		filter: blur(6px);
+		opacity: 0;
+		transform: translateY(24px);
+		transition: opacity 1.2s var(--rb-ease-out) 0.85s, transform 1.2s var(--rb-ease-out) 0.85s, filter 1.2s var(--rb-ease-out) 0.85s;
+	}
+
+	.rb-motion .is-style-rb-hero.is-in .rb-hero__subtitle,
+	.rb-motion .is-style-rb-hero.is-in .wp-block-cover__inner-container > p {
+		filter: none;
+		opacity: 1;
+		transform: none;
+	}
+
+	.rb-motion .is-style-rb-hero .wp-block-buttons.is-style-rb-notch {
+		translate: 0 100%;
+		transition: translate 1.2s var(--rb-ease-out) 1.05s;
+	}
+
+	.rb-motion .is-style-rb-hero.is-in .wp-block-buttons.is-style-rb-notch {
+		translate: 0 0;
+	}
+
+	.rb-motion:not(.rb-loading) .rb-header > * {
+		animation: rb-drop 1s var(--rb-ease-out) backwards;
+	}
+
+	.rb-motion .rb-header > :nth-child(2) { animation-delay: 0.12s; }
+	.rb-motion .rb-header > :nth-child(3) { animation-delay: 0.24s; }
+
+	@keyframes rb-drop {
+		from { opacity: 0; transform: translateY(-16px); }
+	}
+
+	/* ------------------------------------------------------------------ *
+	 * Starting states for GSAP scenes (avoid a flash before it runs)
+	 * ------------------------------------------------------------------ */
+
+	.rb-motion .rb-mission__cards > *,
+	.rb-motion .rb-options > *,
+	.rb-motion .wp-block-gallery.is-style-rb-scatter > .wp-block-image {
+		opacity: 0;
+	}
+
+	/* Value rows: the top rule draws across (driven by --rb-line). */
+	.rb-motion .rb-row-armed {
+		border-top-color: transparent;
+	}
+
+	.rb-motion .rb-row-armed::after {
+		background: var(--wp--custom--color--border-section);
+		content: "";
+		height: 1px;
+		left: 0;
+		position: absolute;
+		right: 0;
+		top: -1px;
+		transform: scaleX(var(--rb-line, 1));
+		transform-origin: 0 50%;
+	}
+
+	/* Light that follows the pointer across a row's photo. */
+	.is-style-rb-value-row .wp-block-image.is-style-rb-shade::before {
+		background: radial-gradient(circle at var(--mx, 50%) var(--my, 50%), rgba(255, 255, 255, 0.28), transparent 45%);
+		content: "";
+		inset: 0;
+		opacity: 0;
+		pointer-events: none;
+		position: absolute;
+		transition: opacity 0.5s var(--rb-ease-out);
+		z-index: 2;
+	}
+
+	.is-style-rb-value-row:hover .wp-block-image.is-style-rb-shade::before {
+		opacity: 1;
+	}
+
+	/* Olive branches grow from the stem (driven by --rb-stem). */
+	.rb-motion :is(.is-style-rb-ornament, .is-style-rb-ornament-offset, .rb-founder__bio, .rb-founder__more, .is-style-rb-signature)::before {
+		clip-path: inset(0 calc((1 - var(--rb-stem, 0)) * 100%) 0 0);
+	}
+
+	/* ------------------------------------------------------------------ *
+	 * Class-toggled reveals (IntersectionObserver)
+	 * ------------------------------------------------------------------ */
+
+	.rb-motion [data-rb-reveal="rise"] {
+		opacity: 0;
+		transform: translateY(28px);
+		transition: opacity 1s var(--rb-ease-out), transform 1s var(--rb-ease-out);
+	}
+
+	.rb-motion [data-rb-reveal="rise"].is-in {
+		opacity: 1;
+		transform: none;
+	}
+
+	.rb-motion [data-rb-reveal="stagger"] > * {
+		opacity: 0;
+		translate: 0 40px;
+		transition: opacity 0.9s var(--rb-ease-out), translate 1.1s var(--rb-ease-out);
+		transition-delay: calc(var(--i, 0) * 90ms);
+	}
+
+	.rb-motion [data-rb-reveal="stagger"].is-in > * {
+		opacity: 1;
+		translate: 0 0;
+	}
+
+	/* Clip on the image, not the observed element (a clipped target never intersects). */
+	.rb-motion [data-rb-reveal="unveil"] img {
+		clip-path: inset(100% 0 0 0);
+		scale: 1.15;
+		transition: clip-path 1.5s var(--rb-ease-in-out), scale 2s var(--rb-ease-out);
+	}
+
+	.rb-motion [data-rb-reveal="unveil"].is-in img {
+		clip-path: inset(0 0 0 0);
+		scale: 1;
+	}
+
+	.rb-motion [data-rb-reveal="item"]::before {
+		scale: 0;
+		transition: scale 0.8s var(--rb-ease-out) 0.1s;
+	}
+
+	.rb-motion [data-rb-reveal="item"] .wp-block-image {
+		opacity: 0;
+		transform: translateY(28px);
+		transition: opacity 1s var(--rb-ease-out) 0.2s, transform 1s var(--rb-ease-out) 0.2s;
+	}
+
+	.rb-motion [data-rb-reveal="item"].is-in::before { scale: 1; }
+	.rb-motion [data-rb-reveal="item"].is-in .wp-block-image { opacity: 1; transform: none; }
+
+	/* ------------------------------------------------------------------ *
+	 * Scroll-linked depth (CSS scroll-driven animations, where supported)
+	 * ------------------------------------------------------------------ */
+
+	@supports (animation-timeline: view()) {
+		.is-style-rb-timeline::before {
+			animation: rb-grow-y linear both;
+			animation-range: entry 20% cover 65%;
+			animation-timeline: view();
+			transform-origin: 50% 0;
+		}
+
+		@keyframes rb-grow-y {
+			from { scale: 1 0; }
+			to { scale: 1 1; }
+		}
+	}
+
+	/* ------------------------------------------------------------------ *
+	 * Hover & focus
+	 * ------------------------------------------------------------------ */
+
+	.rb-header__nav .wp-block-navigation-item__content,
+	.rb-footer__nav .wp-block-navigation-item__content {
+		background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat;
+		padding-bottom: 2px;
+		text-decoration: none !important;
+		transition: background-size 0.45s var(--rb-ease-out);
+	}
+
+	.rb-header__nav .wp-block-navigation-item__content:is(:hover, :focus-visible),
+	.rb-header__nav .current-menu-item > .wp-block-navigation-item__content,
+	.rb-footer__nav .wp-block-navigation-item__content:is(:hover, :focus-visible) {
+		background-size: 100% 1px;
+	}
+
+	.rb-header__nav .is-menu-open .wp-block-navigation-item__content {
+		background-size: 0 1px;
+	}
+
+	.wp-element-button,
+	.wp-block-read-more.is-style-rb-button {
+		transition: background-color 0.3s var(--rb-ease-out), color 0.3s var(--rb-ease-out), transform 0.4s var(--rb-ease-out), box-shadow 0.4s var(--rb-ease-out);
+	}
+
+	.wp-element-button:hover,
+	.wp-block-read-more.is-style-rb-button:hover {
+		box-shadow: 0 10px 24px -12px rgba(44, 26, 0, 0.55);
+		transform: translateY(-2px);
+	}
+
+	.wp-element-button:active {
+		transform: translateY(0) scale(0.98);
+	}
+
+	.is-style-rb-card {
+		transition: transform 0.5s var(--rb-ease-out), box-shadow 0.5s var(--rb-ease-out), border-color 0.5s var(--rb-ease-out);
+	}
+
+	.is-style-rb-card .wp-block-post-featured-image img {
+		transition: scale 0.9s var(--rb-ease-out);
+	}
+
+	.is-style-rb-card:hover,
+	.is-style-rb-card:focus-within {
+		border-color: rgba(8, 48, 28, 0.32);
+		box-shadow: 0 22px 40px -24px rgba(8, 48, 28, 0.45);
+		transform: translateY(-6px);
+	}
+
+	.is-style-rb-card:hover .wp-block-post-featured-image img {
+		scale: 1.06;
+	}
+
+	.is-style-rb-mission-card::before {
+		transform-origin: 50% 100%;
+	}
+
+	.is-style-rb-mission-card:hover::before {
+		animation: rb-sway 1.6s var(--rb-ease-in-out);
+	}
+
+	@keyframes rb-sway {
+		25% { rotate: -7deg; }
+		60% { rotate: 5deg; }
+		85% { rotate: -2deg; }
+	}
+
+	.wp-block-gallery.is-style-rb-scatter > .wp-block-image img,
+	.wp-block-gallery.is-style-rb-masonry > .wp-block-image img {
+		transition: scale 0.7s var(--rb-ease-out);
+	}
+
+	.wp-block-gallery.is-style-rb-scatter > .wp-block-image:hover img,
+	.wp-block-gallery.is-style-rb-masonry > .wp-block-image:hover img {
+		scale: 1.06;
+	}
+
+	.rb-header .wp-block-site-logo img,
+	.is-style-rb-badge .wp-block-site-logo img {
+		transition: rotate 1.2s var(--rb-ease-out);
+	}
+
+	.rb-header .wp-block-site-logo a:hover img,
+	.is-style-rb-badge .wp-block-site-logo a:hover img {
+		rotate: -12deg;
+	}
+}

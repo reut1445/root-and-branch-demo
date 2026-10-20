@@ -1,0 +1,16 @@
+/*
+Theme Name: Root & Branch
+Theme URI: https://www.rootandbranchisrael.com/
+Author: Reut Kishon
+Description: Custom block theme for Root & Branch — Christians harvesting olives in Israel. Built on theme.json design tokens, block patterns and template parts, and prepared for WooCommerce.
+Requires at least: 6.6
+Tested up to: 6.8
+Requires PHP: 7.4
+Version: 1.0.0
+License: GNU General Public License v2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: root-branch
+Tags: block-theme, full-site-editing, custom-colors, custom-logo, editor-style, wide-blocks
+*/
+
+/* Styles live in theme.json and assets/css/. This file only carries the theme header. */

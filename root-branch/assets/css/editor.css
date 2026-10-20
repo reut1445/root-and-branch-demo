@@ -1,0 +1,20 @@
+/**
+ * Editor-only adjustments. Front-end styles are loaded in the editor too
+ * (see inc/assets.php); this file only compensates for editor chrome.
+ */
+
+/* The header floats over the hero on the front end; give it room here. */
+.editor-styles-wrapper .wp-block-cover.is-style-rb-hero {
+	margin-top: 0;
+}
+
+/* Keep the badge clickable above its neighbours while editing. */
+.editor-styles-wrapper .is-style-rb-badge {
+	pointer-events: auto;
+}
+
+/* Show the twelfth+ gallery tiles in the editor so they can be managed. */
+.editor-styles-wrapper .wp-block-gallery.is-style-rb-scatter > .wp-block-image:nth-child(n + 13) {
+	display: block;
+	opacity: 0.4;
+}
