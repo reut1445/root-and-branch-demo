@@ -61,7 +61,7 @@
 		},
 		{
 			"step": "runPHP",
-			"code": "<?php require '/wordpress/wp-load.php'; wp_delete_post(1,true); wp_delete_post(2,true); (new Root_Branch_Starter_Importer())->run();"
+			"code": "<?php require '/wordpress/wp-load.php'; wp_delete_post(1,true); wp_delete_post(2,true); (new Root_Branch_Starter_Importer())->run(); update_user_meta(1, 'show_admin_bar_front', 'false');"
 		}
 	]
 }
