@@ -1,14 +1,66 @@
 {
 	"$schema": "https://playground.wordpress.net/blueprint-schema.json",
 	"landingPage": "/",
-	"preferredVersions": { "php": "8.2", "wp": "latest" },
-	"features": { "networking": true },
+	"preferredVersions": {
+		"php": "8.2",
+		"wp": "latest"
+	},
+	"features": {
+		"networking": true
+	},
 	"steps": [
-		{ "step": "installPlugin", "pluginData": { "resource": "wordpress.org/plugins", "slug": "woocommerce" }, "options": { "activate": true } },
-		{ "step": "installTheme", "themeData": { "resource": "git:directory", "url": "https://github.com/reut1445/root-and-branch-demo", "ref": "main", "path": "root-branch" }, "options": { "activate": true } },
-		{ "step": "installPlugin", "pluginData": { "resource": "git:directory", "url": "https://github.com/reut1445/root-and-branch-demo", "ref": "main", "path": "root-branch-core" }, "options": { "activate": true } },
-		{ "step": "installPlugin", "pluginData": { "resource": "git:directory", "url": "https://github.com/reut1445/root-and-branch-demo", "ref": "main", "path": "root-branch-starter" }, "options": { "activate": true } },
-		{ "step": "wp-cli", "command": "wp post delete 1 2 --force" },
-		{ "step": "wp-cli", "command": "wp root-branch import" }
+		{
+			"step": "installPlugin",
+			"pluginData": {
+				"resource": "wordpress.org/plugins",
+				"slug": "woocommerce"
+			},
+			"options": {
+				"activate": true
+			}
+		},
+		{
+			"step": "installTheme",
+			"themeData": {
+				"resource": "git:directory",
+				"url": "https://github.com/reut1445/root-and-branch-demo",
+				"ref": "main",
+				"path": "root-branch"
+			},
+			"options": {
+				"activate": true,
+				"targetFolderName": "root-branch"
+			}
+		},
+		{
+			"step": "installPlugin",
+			"pluginData": {
+				"resource": "git:directory",
+				"url": "https://github.com/reut1445/root-and-branch-demo",
+				"ref": "main",
+				"path": "root-branch-core"
+			},
+			"options": {
+				"activate": true,
+				"targetFolderName": "root-branch-core"
+			}
+		},
+		{
+			"step": "installPlugin",
+			"pluginData": {
+				"resource": "git:directory",
+				"url": "https://github.com/reut1445/root-and-branch-demo",
+				"ref": "main",
+				"path": "root-branch-starter"
+			},
+			"options": {
+				"activate": true,
+				"targetFolderName": "root-branch-starter"
+			}
+		},
+		{
+			"step": "runPHP",
+			"code": "<?php require '/wordpress/wp-load.php'; wp_delete_post(1,true); wp_delete_post(2,true); (new Root_Branch_Starter_Importer())->run();"
+		}
 	]
 }
